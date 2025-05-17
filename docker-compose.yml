@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  mailcow-proxy:
+    image: caddy:2-alpine
+    container_name: mailcow-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - default
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  default:
